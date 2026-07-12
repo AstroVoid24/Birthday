@@ -3,32 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>HAPPY BIRTHDAY MOM!</title>
+    <style>
+        body {
+            background-image: url("Mommy.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        p {
+            color: red;
+            font-size: 20pt;
+            background: #ffffff;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="car">🎉 🎂!С днем Рождения Мама!🎂 🎉 </h1>
+<h1 id="car">🎉 🎂!С днем Рождения Моя Мама!🎂 🎉 </h1>
+<button type="button" id="ClickMe">Нажми меня!</button>
 <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 <script>
-    let Offside = 400
+    let Offside = 0
     let rightSide = true
+    let sound = new Audio("Test.mp3");
+    sound.play();
     let moveleft = function () {
-        if (Offside >= 400 && Offside < 800 && rightSide === true) {
+        if (Offside >= 0 && Offside < 200 && rightSide === true) {
             $("#car").offset({left: Offside})
             Offside++
         }
-        else if (Offside >= 800 && rightSide === true) {
+        else if (Offside >= 0 && rightSide === true) {
             rightSide = false
             Offside--
         }
-        else if (Offside >= 420 && Offside < 800 && rightSide === false) {
+        else if (Offside >= 0 && Offside < 200 && rightSide === false) {
             $("#car").offset({left: Offside})
             Offside--
         }
-        else if (Offside <= 420 && rightSide === false) {
+        else if (Offside <= 20 && rightSide === false) {
             rightSide = true
             Offside++
         }
     }
     setInterval(moveleft, 10)
+    $(document).ready(function () {
+        $("#ClickMe").click(function () {
+            $("body").append("<p>❤️❤️❤️Дорогая моя, с днем рождения!❤️❤️❤️\n" +
+                "Поздравляю от сердца тебя.\n" +
+                "Я спасибо скажу за рождение\n" +
+                "И за жизнь. Ту, что есть у меня.\n" +
+                "\n" +
+                "За твои бессонные ночи,\n" +
+                "Доброту и любовь без границ\n" +
+                "Благодарен тебе очень-очень.\n" +
+                "Описать всё — не хватит страниц.\n" +
+                "\n" +
+                "Долго, мама, живи ты на свете,\n" +
+                "Пусть сердечко стучит сотню лет.\n" +
+                "И от глаз удивительных этих\n" +
+                "Пусть исходит всегда добрый свет.\n" +
+                "\n" +
+                "Ко мне можешь всегда обратиться:\n" +
+                "Чем смогу, я тебе помогу.\n" +
+                "Очень любим тебя мы и ценим\n" +
+                "В нашем тихом семейном кругу.\n" +
+                "\n" +
+                "Я тебя люблю Мама❤️❤️❤️</p>");
+            $(this).remove()
+        });
+    });
+
 </script>
 </body>
 </html>
