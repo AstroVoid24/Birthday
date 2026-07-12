@@ -3,51 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>HAPPY BIRTHDAY MOM!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;                /* No scrollbars, ever */
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+
         body {
             background-image: url("Mommy.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: 100% 100%;
+            background-repeat: repeat;
+            background-size: 100%, 200%;
+            background-attachment: fixed                 /* Fill screen without gaps */
         }
+
         p {
             color: red;
             font-size: 20pt;
             background: #ffffff;
+            max-width: 80%;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 20;
         }
     </style>
 </head>
 <body>
-<h1 id="car">🎉 🎂!С днем Рождения Моя Мама!🎂 🎉 </h1>
+
+<h1 id="car">🎉 🎂!С днем Рождения Моя Мама!🎂 🎉</h1>
 <button type="button" id="ClickMe">Нажми меня!</button>
+
 <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 <script>
-    let Offside = 0
-    let rightSide = true
+    // Greeting movement
+    let Offside = 0;
+    let rightSide = true;
     let sound = new Audio("Test.mp3");
     sound.play();
+
     let moveleft = function () {
+        // Smooth bounce between 0 and 200 pixels
         if (Offside >= 0 && Offside < 200 && rightSide === true) {
-            $("#car").offset({left: Offside})
-            Offside++
+            $("#car").offset({ left: Offside });
+            Offside++;
+        } else if (Offside >= 200 && rightSide === true) {
+            rightSide = false;
+            Offside--;
+        } else if (Offside >= 0 && Offside < 200 && rightSide === false) {
+            $("#car").offset({ left: Offside });
+            Offside--;
+        } else if (Offside <= 0 && rightSide === false) {
+            rightSide = true;
+            Offside++;
         }
-        else if (Offside >= 0 && rightSide === true) {
-            rightSide = false
-            Offside--
-        }
-        else if (Offside >= 0 && Offside < 200 && rightSide === false) {
-            $("#car").offset({left: Offside})
-            Offside--
-        }
-        else if (Offside <= 20 && rightSide === false) {
-            rightSide = true
-            Offside++
-        }
-    }
-    setInterval(moveleft, 10)
+    };
+    setInterval(moveleft, 10);
+
+    // Button to show the poem
     $(document).ready(function () {
         $("#ClickMe").click(function () {
-            $("body").append("<p>❤️❤️❤️Дорогая моя, с днем рождения!❤️❤️❤️\n" +
+            $("body").append(
+                "<p>❤️❤️❤️Дорогая моя, с днем рождения!❤️❤️❤️\n" +
                 "Поздравляю от сердца тебя.\n" +
                 "Я спасибо скажу за рождение\n" +
                 "И за жизнь. Ту, что есть у меня.\n" +
@@ -67,11 +88,12 @@
                 "Очень любим тебя мы и ценим\n" +
                 "В нашем тихом семейном кругу.\n" +
                 "\n" +
-                "Я тебя люблю Мама❤️❤️❤️</p>");
-            $(this).remove()
+                "Я тебя люблю Мама❤️❤️❤️</p>"
+            );
+            $(this).remove();
         });
     });
-
 </script>
+
 </body>
 </html>
