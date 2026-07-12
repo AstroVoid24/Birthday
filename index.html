@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HAPPY BIRTHDAY MOM!</title>
+</head>
+<body>
+    <h1 id="car">🎉 🎂!С днем Рождения Мама!🎂 🎉 </h1>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script>
+    let Offside = 400
+    let rightSide = true
+    let moveleft = function () {
+        if (Offside >= 400 && Offside < 800 && rightSide === true) {
+            $("#car").offset({left: Offside})
+            Offside++
+        }
+        else if (Offside >= 800 && rightSide === true) {
+            rightSide = false
+            Offside--
+        }
+        else if (Offside >= 420 && Offside < 800 && rightSide === false) {
+            $("#car").offset({left: Offside})
+            Offside--
+        }
+        else if (Offside <= 420 && rightSide === false) {
+            rightSide = true
+            Offside++
+        }
+    }
+    setInterval(moveleft, 10)
+</script>
+</body>
+</html>
